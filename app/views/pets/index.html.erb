@@ -1,0 +1,32 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1>Pets Directory</h1>
+</div>
+
+<div class="card shadow-sm">
+  <div class="card-body">
+    <table class="table table-hover align-middle mb-0">
+      <thead class="table-light">
+        <tr>
+          <th>Name</th>
+          <th>Species</th>
+          <th>Breed</th>
+          <th>Owner Name</th>
+          <th>Date of Birth</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @pets.each do |pet| %>
+          <tr>
+            <td>
+              <%= link_to pet.name, pet_path(pet), class: "text-decoration-none fw-bold text-success" %>
+            </td>
+            <td><%= pet.species %></td>
+            <td><%= pet.breed %></td>
+            <td><%= link_to "#{pet.owner.first_name} #{pet.owner.last_name}", owner_path(pet.owner), class: "text-decoration-none text-dark" %></td>
+            <td><%= pet.date_of_birth&.strftime("%B %d, %Y") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

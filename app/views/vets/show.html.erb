@@ -1,0 +1,24 @@
+<div class="mb-4">
+  <%= link_to "← Back to Vets", vets_path, class: "btn btn-outline-secondary btn-sm" %>
+</div>
+
+<div class="card shadow-sm mb-4">
+  <div class="card-header bg-info text-white">
+    <h2 class="h4 mb-0 text-dark"><%= @vet.first_name %> <%= @vet.last_name %></h2>
+  </div>
+  <div class="card-body">
+    <p><strong>Email:</strong> <%= @vet.email %></p>
+    <p><strong>Phone:</strong> <%= @vet.phone %></p>
+    <p><strong>Specialization:</strong> <%= @vet.specialization %></p>
+  </div>
+</div>
+
+<h3 class="h5 mb-3">Assigned Appointments</h3>
+<div class="list-group">
+  <% @vet.appointments.each do |appointment| %>
+    <%= link_to "Appointment on #{appointment.date.strftime('%B %d, %Y')} with #{appointment.pet.name}", appointment_path(appointment), class: "list-group-item list-group-item-action" %>
+  <% end %>
+  <% if @vet.appointments.empty? %>
+    <p class="text-muted mt-2">This veterinarian has no scheduled appointments.</p>
+  <% end %>
+</div>

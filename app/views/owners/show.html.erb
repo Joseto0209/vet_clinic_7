@@ -1,0 +1,25 @@
+<div class="mb-4">
+  <%= link_to "← Back to Owners", owners_path, class: "btn btn-outline-secondary btn-sm" %>
+</div>
+
+<div class="card shadow-sm mb-4">
+  <div class="card-header bg-primary text-white">
+    <h2 class="h4 mb-0"><%= @owner.first_name %> <%= @owner.last_name %></h2>
+  </div>
+  <div class="card-body">
+    <p><strong>Email:</strong> <%= @owner.email %></p>
+    <p><strong>Phone:</strong> <%= @owner.phone %></p>
+    <p><strong>Address:</strong> <%= @owner.address %></p>
+  </div>
+</div>
+
+<h3 class="h5 mb-3">Registered Pets</h3>
+<div class="list-group">
+  <% @owner.pets.each do |pet| %>
+    <%= link_to pet.name, pet_path(pet), class: "list-group-item list-group-item-action d-flex justify-content-between align-items-center" %>
+  <% end %>
+  
+  <% if @owner.pets.empty? %>
+    <p class="text-muted mt-2">This owner has no registered pets.</p>
+  <% end %>
+</div>

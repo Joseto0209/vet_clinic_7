@@ -1,0 +1,32 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1>Owners Directory</h1>
+</div>
+
+<div class="card shadow-sm">
+  <div class="card-body">
+    <table class="table table-hover align-middle mb-0">
+      <thead class="table-light">
+        <tr>
+          <th>Full Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Number of Pets</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @owners.each do |owner| %>
+          <tr>
+            <td>
+              <%= link_to "#{owner.first_name} #{owner.last_name}", owner_path(owner), class: "text-decoration-none fw-bold" %>
+            </td>
+            <td><%= owner.email %></td>
+            <td><%= owner.phone %></td>
+            <td>
+              <span class="badge bg-secondary rounded-pill"><%= owner.pets.count %></span>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

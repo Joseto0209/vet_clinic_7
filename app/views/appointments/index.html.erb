@@ -1,0 +1,38 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1>Appointments</h1>
+</div>
+
+<div class="card shadow-sm">
+  <div class="card-body">
+    <table class="table table-hover align-middle mb-0">
+      <thead class="table-light">
+        <tr>
+          <th>Date</th>
+          <th>Pet Name</th>
+          <th>Vet Name</th>
+          <th>Reason</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @appointments.each do |appointment| %>
+          <tr>
+            <td><%= link_to appointment.date.strftime("%B %d, %Y %H:%M"), appointment_path(appointment), class: "text-decoration-none fw-bold" %></td>
+            <td><%= link_to appointment.pet.name, pet_path(appointment.pet), class: "text-decoration-none" %></td>
+            <td><%= link_to "#{appointment.vet.first_name} #{appointment.vet.last_name}", vet_path(appointment.vet), class: "text-decoration-none" %></td>
+            <td><%= appointment.reason %></td>
+            <td>
+              <% status_class = case appointment.status 
+                                when 'scheduled' then 'bg-primary'
+                                when 'in_progress' then 'bg-warning text-dark'
+                                when 'completed' then 'bg-success'
+                                when 'cancelled' then 'bg-danger'
+                                else 'bg-secondary' end %>
+              <span class="badge <%= status_class %>"><%= appointment.status.titleize %></span>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

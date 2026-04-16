@@ -1,0 +1,34 @@
+<div class="mb-4">
+  <%= link_to "← Back to Pets", pets_path, class: "btn btn-outline-secondary btn-sm" %>
+</div>
+
+<div class="card shadow-sm mb-4">
+  <div class="card-header bg-success text-white">
+    <h2 class="h4 mb-0"><%= @pet.name %> (<%= @pet.species %>)</h2>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <p><strong>Breed:</strong> <%= @pet.breed %></p>
+        <p><strong>Date of Birth:</strong> <%= @pet.date_of_birth&.strftime("%B %d, %Y") %></p>
+        <p><strong>Weight:</strong> <%= @pet.weight %> kg</p>
+      </div>
+      <div class="col-md-6">
+        <p><strong>Owner:</strong> 
+          <%= link_to "#{@pet.owner.first_name} #{@pet.owner.last_name}", owner_path(@pet.owner), class: "text-decoration-none" %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3 class="h5 mb-3">Appointment History</h3>
+<div class="list-group">
+  <% @pet.appointments.each do |appointment| %>
+    <%= link_to "Appointment on #{appointment.date.strftime('%B %d, %Y')} - Reason: #{appointment.reason}", appointment_path(appointment), class: "list-group-item list-group-item-action" %>
+  <% end %>
+  
+  <% if @pet.appointments.empty? %>
+    <p class="text-muted mt-2">This pet has no scheduled appointments.</p>
+  <% end %>
+</div>
