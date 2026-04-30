@@ -1,0 +1,10 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1>Edit Treatment</h1>
+  <%= link_to "← Back to Appointment", appointment_path(@appointment), class: "btn btn-outline-secondary btn-sm" %>
+</div>
+
+<div class="card shadow-sm">
+  <div class="card-body">
+    <%= render "form", treatment: @treatment %>
+  </div>
+</div>

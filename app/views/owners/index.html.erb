@@ -1,5 +1,6 @@
 <div class="d-flex justify-content-between align-items-center mb-4">
   <h1>Owners Directory</h1>
+  <%= link_to "New Owner", new_owner_path, class: "btn btn-primary" %>
 </div>
 
 <div class="card shadow-sm">
@@ -11,6 +12,7 @@
           <th>Email</th>
           <th>Phone</th>
           <th>Number of Pets</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -23,6 +25,10 @@
             <td><%= owner.phone %></td>
             <td>
               <span class="badge bg-secondary rounded-pill"><%= owner.pets.size %></span>
+            </td>
+            <td>
+              <%= link_to "Edit", edit_owner_path(owner), class: "btn btn-sm btn-outline-warning me-1" %>
+              <%= button_to "Delete", owner_path(owner), method: :delete, class: "btn btn-sm btn-outline-danger", data: { turbo_confirm: "Are you sure?" } %>
             </td>
           </tr>
         <% end %>
