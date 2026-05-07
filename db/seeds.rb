@@ -16,6 +16,12 @@ pet3 = owner2.pets.create!(name: "Cucho", species: "cat", breed: "Domestic Short
 pet4 = owner3.pets.create!(name: "Guatón", species: "dog", breed: "English Bulldog", date_of_birth: Date.new(2018, 12, 25), weight: 25.0)
 pet5 = owner2.pets.create!(name: "Tambo", species: "rabbit", breed: "Angora", date_of_birth: Date.new(2022, 3, 15), weight: 2.1)
 
+pet1.photo.attach(io: File.open(Rails.root.join('db', 'seeds', 'pets', 'dog1.jpg')), filename: 'dog1.jpg', content_type: 'image/jpeg')
+pet2.photo.attach(io: File.open(Rails.root.join('db', 'seeds', 'pets', 'dog2.jpg')), filename: 'dog2.jpg', content_type: 'image/jpeg')
+pet3.photo.attach(io: File.open(Rails.root.join('db', 'seeds', 'pets', 'cat1.jpg')), filename: 'cat1.jpg', content_type: 'image/jpeg')
+pet4.photo.attach(io: File.open(Rails.root.join('db', 'seeds', 'pets', 'dog3.jpg')), filename: 'dog3.jpg', content_type: 'image/jpeg')
+pet5.photo.attach(io: File.open(Rails.root.join('db', 'seeds', 'pets', 'rabbit1.jpg')), filename: 'rabbit1.jpg', content_type: 'image/jpeg')
+
 puts "Creating veterinarians..."
 vet1 = Vet.create!(first_name: "Javiera", last_name: "Soto", email: "jsoto@veterinaria.cl", phone: "+56911112222", specialization: "General Medicine")
 vet2 = Vet.create!(first_name: "Rodrigo", last_name: "Pérez", email: "rperez@veterinaria.cl", phone: "+56933334444", specialization: "Surgery and Traumatology")
@@ -28,10 +34,10 @@ app4 = Appointment.create!(pet: pet2, vet: vet1, date: Time.current + 3.days, re
 app5 = Appointment.create!(pet: pet5, vet: vet2, date: Time.current - 5.days, reason: "Paw examination", status: :cancelled)
 
 puts "Applying medical treatments..."
-Treatment.create!(appointment: app1, name: "Gastric Lavage", medication: "Activated Charcoal", dosage: "20 ml", notes: "The dog is fine, but no more sausages for a while. Recovered from indigestion.", administered_at: Time.current - 2.days)
-Treatment.create!(appointment: app1, name: "Hydration", medication: "Saline Solution", dosage: "500 ml", notes: "Administered IV fluids for stabilization.", administered_at: Time.current - 2.days)
-Treatment.create!(appointment: app2, name: "Ear Suture", medication: "Local Anesthesia and Povidone", dosage: "3 stitches", notes: "Cucho lost the fight, but the suture turned out great.", administered_at: Time.current - 1.day)
-Treatment.create!(appointment: app2, name: "Antibiotic", medication: "Amoxicillin", dosage: "1 pill every 12h", notes: "To prevent infection from scratches.", administered_at: Time.current - 1.day)
-Treatment.create!(appointment: app3, name: "Oxygen Therapy", medication: "Oxygen", dosage: "15 min", notes: "Guatón is already breathing better with the clinic's AC.", administered_at: Time.current)
+Treatment.create!(appointment: app1, name: "Gastric Lavage", medication: "Activated Charcoal", dosage: "20 ml", clinical_notes: "<h1>Emergency</h1><p>The dog is fine, but no more <em>sausages</em> for a while.</p><ul><li>Recovered from indigestion</li><li>Needs rest</li></ul>", administered_at: Time.current - 2.days)
+Treatment.create!(appointment: app1, name: "Hydration", medication: "Saline Solution", dosage: "500 ml", clinical_notes: "<p>Administered <strong>IV fluids</strong> for stabilization.</p>", administered_at: Time.current - 2.days)
+Treatment.create!(appointment: app2, name: "Ear Suture", medication: "Local Anesthesia and Povidone", dosage: "3 stitches", clinical_notes: "<p>Cucho lost the fight, but the suture turned out great.</p>", administered_at: Time.current - 1.day)
+Treatment.create!(appointment: app2, name: "Antibiotic", medication: "Amoxicillin", dosage: "1 pill every 12h", clinical_notes: "<p>To prevent infection</p>", administered_at: Time.current - 1.day)
+Treatment.create!(appointment: app3, name: "Oxygen Therapy", medication: "Oxygen", dosage: "15 min", clinical_notes: "<h1>Recovery</h1><p>Guatón is already breathing better.</p>", administered_at: Time.current)
 
 puts "Database seeded successfully!"

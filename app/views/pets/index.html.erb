@@ -8,6 +8,7 @@
     <table class="table table-hover align-middle mb-0">
       <thead class="table-light">
         <tr>
+          <th>Photo</th>
           <th>Name</th>
           <th>Species</th>
           <th>Breed</th>
@@ -20,6 +21,15 @@
         <% @pets.each do |pet| %>
           <tr>
             <td>
+              <% if pet.photo.attached? %>
+                <%= image_tag pet.photo.variant(resize_to_fill: [120, 120]), class: "rounded-circle shadow-sm", style: "width: 60px; height: 60px; object-fit: cover;" %>
+              <% else %>
+                <div class="bg-light rounded-circle shadow-sm d-flex align-items-center justify-content-center text-muted" style="width: 60px; height: 60px; font-size: 0.7rem;">
+                  N/A
+                </div>
+              <% end %>
+            </td>
+            <td class="align-middle">
               <%= link_to pet.name, pet_path(pet), class: "text-decoration-none fw-bold text-success" %>
             </td>
             <td><%= pet.species %></td>

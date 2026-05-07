@@ -1,24 +1,26 @@
-# README
+# VetClinic App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup
 
-Things you may want to cover:
+To set up and run the VetClinic application locally, follow these steps:
 
-* Ruby version
+```bash
+bundle install
+bin/rails db:setup
+bin/rails server
+```
 
-* System dependencies
+The application will be available at `http://localhost:3000`.
 
-* Configuration
+## Image Processing Dependencies
 
-* Database creation
+This application uses Active Storage to upload pet images. It requires `libvips` for processing image variants on the fly. 
+Please install it based on your operating system:
 
-* Database initialization
+* **Debian/Ubuntu:** `sudo apt install libvips`
+* **macOS (Homebrew):** `brew install vips`
+* **Arch Linux:** `sudo pacman -S libvips`
 
-* How to run the test suite
+## Action Text Sanitization
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Action Text securely sanitizes input. As part of Lab 7 development, an explicit sanitization check was successfully performed: passing `<script>alert(1)</script>` into the rich text editor of a treatment was successfully sanitized. When rendered on the appointment show page, no alert fired and the malicious script tag was eliminated from the output HTML.

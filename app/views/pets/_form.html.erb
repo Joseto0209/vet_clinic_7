@@ -32,6 +32,17 @@
   </div>
 
   <div class="mb-3">
+    <% if pet.photo.attached? && pet.photo.attachment.persisted? %>
+      <div class="mb-2">
+        <p class="form-label mb-1">Current photo:</p>
+        <%= image_tag pet.photo, style: "width: 100px; height: 100px; object-fit: cover;", class: "rounded-circle shadow-sm" %>
+      </div>
+    <% end %>
+    <%= f.label :photo, class: "form-label" %>
+    <%= f.file_field :photo, class: "form-control", accept: "image/jpeg,image/png,image/webp" %>
+  </div>
+
+  <div class="mb-3">
     <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>

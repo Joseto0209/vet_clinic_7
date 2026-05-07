@@ -17,8 +17,10 @@
   </div>
 
   <div class="mb-3">
-    <%= f.label :notes, class: "form-label" %>
-    <%= f.text_area :notes, class: "form-control", rows: 3 %>
+    <%= f.label :clinical_notes, class: "form-label mb-2" %>
+    <div class="bg-white border rounded">
+      <%= f.rich_text_area :clinical_notes %>
+    </div>
   </div>
 
   <div class="mb-3">

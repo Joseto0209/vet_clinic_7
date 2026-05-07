@@ -32,9 +32,12 @@
                                 else 'bg-secondary' end %>
               <span class="badge <%= status_class %>"><%= appointment.status.titleize %></span>
             </td>
-            <td>
+            <td class="d-flex">
+              <% if ['in_progress', 'completed'].include?(appointment.status) %>
+                <%= link_to "Add Treatment", new_appointment_treatment_path(appointment), class: "btn btn-sm btn-success me-1" %>
+              <% end %>
               <%= link_to "Edit", edit_appointment_path(appointment), class: "btn btn-sm btn-outline-warning me-1" %>
-              <%= button_to "Delete", appointment_path(appointment), method: :delete, class: "btn btn-sm btn-outline-danger", data: { turbo_confirm: "Are you sure?" } %>
+              <%= button_to "Delete", appointment_path(appointment), method: :delete, class: "btn btn-sm btn-outline-danger", form_class: "d-inline", data: { turbo_confirm: "Are you sure?" } %>
             </td>
           </tr>
         <% end %>

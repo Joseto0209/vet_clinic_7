@@ -50,7 +50,7 @@
             <td><%= treatment.medication %></td>
             <td><%= treatment.dosage %></td>
             <td><%= treatment.administered_at&.strftime("%B %d, %Y %I:%M %p") %></td>
-            <td><%= treatment.notes %></td>
+            <td><%= treatment.clinical_notes %></td>
             <td>
               <%= link_to "Edit", edit_appointment_treatment_path(@appointment, treatment), class: "btn btn-sm btn-outline-warning me-1" %>
               <%= button_to "Delete", appointment_treatment_path(@appointment, treatment), method: :delete, class: "btn btn-sm btn-outline-danger", data: { turbo_confirm: "Are you sure?" } %>
